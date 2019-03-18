@@ -1,0 +1,20 @@
+server.port: 8080
+
+spring:
+  application.name: healthchecker
+  cloud:
+    consul:
+      host: 172.17.0.5
+      port: 8500
+      discovery:
+        instance-id: healthchecker-service-id:${server.port}
+        serviceName: ms-${spring.application.name}
+        healthCheckInterval: 5s
+        healthCheckPath: /health
+        ipAddress: 10.214.0.100
+        preferIpAddress: true
+
+management:
+  endpoint:
+    health:
+      enabled: false
